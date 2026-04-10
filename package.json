@@ -13,7 +13,8 @@
     "install:client": "cd client && npm install",
     "install:all": "npm run install:server && npm run install:client",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "render-postbuild": "cd client && npm install && npm run build"
+    "render-postbuild": "cd client && npm install && npm run build",
+    "check-deployment": "node check-deployment.js"
   },
   "keywords": [
     "react",

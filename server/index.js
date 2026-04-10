@@ -181,7 +181,8 @@ app.get('/health', (req, res) => {
 
 // Catch all handler: send back React's index.html file for any non-API routes
 if (process.env.NODE_ENV === 'production') {
-    app.get('*', (req, res) => {
+    app.use((req, res) => {
+        // Serve React's index.html for all non-API routes
         res.sendFile(path.join(__dirname, '../client/build/index.html'));
     });
 }

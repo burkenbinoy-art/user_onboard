@@ -104,14 +104,27 @@ Import the `POSTMAN_TESTING_GUIDE.md` file for comprehensive API testing instruc
 
 ## 🚀 Deployment
 
-### Render Deployment
+### Render Deployment (Recommended)
 
-1. **Connect Repository**: Link your GitHub repository to Render
-2. **Environment Variables**: Set the following in Render dashboard:
-   - `MONGO_URI`: Your MongoDB connection string
-   - `NODE_ENV`: `production`
-   - `PORT`: `10000` (or Render's assigned port)
-3. **Deploy**: Render will automatically build and deploy using `render.yaml`
+For comprehensive deployment instructions, see **[RENDER_DEPLOYMENT_GUIDE.md](RENDER_DEPLOYMENT_GUIDE.md)**
+
+**Quick Start:**
+1. Set up MongoDB Atlas database
+2. Push code to GitHub
+3. Connect repository to Render
+4. Set environment variables (`MONGO_URI`, `NODE_ENV=production`)
+5. Deploy automatically
+
+**Key Files:**
+- `render.yaml` - Render deployment configuration
+- `RENDER_DEPLOYMENT_GUIDE.md` - Complete deployment documentation
+- `RENDER_DEPLOYMENT_CHECKLIST.md` - Step-by-step checklist
+- `check-deployment.sh` - Pre-deployment verification script
+
+**Pre-deployment Check:**
+```bash
+npm run check-deployment
+```
 
 ### Manual Deployment
 
