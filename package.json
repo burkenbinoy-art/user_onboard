@@ -1,0 +1,37 @@
+{
+  "name": "user-management-system",
+  "version": "1.0.0",
+  "description": "Full-stack User Management System with React frontend and Node.js/Express/MongoDB backend",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm start",
+    "start": "node server/index.js",
+    "build": "cd client && npm run build",
+    "install:server": "cd server && npm install",
+    "install:client": "cd client && npm install",
+    "install:all": "npm run install:server && npm run install:client",
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "render-postbuild": "cd client && npm install && npm run build"
+  },
+  "keywords": [
+    "react",
+    "nodejs",
+    "express",
+    "mongodb",
+    "mongoose",
+    "user-management",
+    "full-stack"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "dependencies": {}
+}
