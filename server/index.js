@@ -18,10 +18,37 @@ if (process.env.NODE_ENV === 'production') {
 
 const User = require('./models/user');
 
+// ============ MongoDB Connection Config ============
+const mongoOptions = {
+    maxPoolSize: 10,
+    minPoolSize: 2,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+    connectTimeoutMS: 10000,
+    retryWrites: true,
+    w: 'majority',
+};
+
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connection Successful"))
-  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
+mongoose.connect(process.env.MONGO_URI, mongoOptions)
+  .then(() => {
+    console.log("✅ MongoDB Connection Successful");
+    console.log("Connected to:", process.env.MONGO_URI.split('@')[1] || 'MongoDB');
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB Connection Error:", err.message);
+    console.error("MONGO_URI:", process.env.MONGO_URI ? "Set" : "NOT SET");
+    process.exit(1); // Exit if can't connect
+  });
+
+// Handle connection events
+mongoose.connection.on('error', (err) => {
+  console.error('❌ MongoDB connection error:', err.message);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.warn('⚠️ MongoDB disconnected');
+});
 
 // ============ CREATE - POST /add-user ============
 app.post('/add-user', async (req, res) => {
